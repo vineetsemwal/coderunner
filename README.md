@@ -10,6 +10,6 @@
  
 **What is not supported now?**
 1) Currently Package is not supported 
-2) Following Libraries are also not supported 
-a)java .io 
+2) Following Libraries are also not supported    
+a)java .io   
 b)java .net
