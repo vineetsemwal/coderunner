@@ -1,12 +1,12 @@
 # Coderunner
 
- Coderunner helps you run java code from browser, Users of this application can run java code from browser
+ Coderunner is a java web application, Users of this application can run java code from browser
  
  
 **How to run this application?** 
  
- 1) One way is doing mvn jetty:run 
- 2) another way is creating war and then deploying on tomcat or any other container
+ 1) One way is doing mvn jetty:run (default port is 8080), you can setup according to your use 
+ 2) another way is creating war and then deploying on tomcat or any other servlet container, If you deploy tomcat 
  
 **What is not supported now?**
 1) Currently Package is not supported 
