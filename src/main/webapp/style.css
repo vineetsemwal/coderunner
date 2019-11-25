@@ -1,0 +1,49 @@
+
+     body{
+        background-color: #e6e6e6 ;
+        margin:0px;
+     }
+
+     .container{
+     columns: #f5f5ff;;
+     margin-left: 10% ;
+     margin-right:20%;
+      margin-top:5%;
+      margin-bottom: 10%;
+     }
+
+     .srcbox{
+     color:#000;
+     height: 200px;
+     }
+
+     .form-input{
+         margin-bottom: 10px;
+         display:block;
+         width: 100%;
+         min-height: 25px;
+     }
+
+  .btn{
+  width:100%;
+  padding:10px;
+  font-size: large;
+  }
+
+  .result, .errResult{
+  margin-top:30px;
+  }
+
+  .errResult{
+   color : red;
+  }
+
+footer {
+    background-color: #fff;
+    border-top: 1px solid #ededed;
+    padding: 50px;
+    z-index: 2;
+    position: relative;
+    color: #484848;
+    text-align: center;
+}

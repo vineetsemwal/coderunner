@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Java Runner</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1 style="margin-left:10%;">Java Code Runner</h1>
+
+<div class="container">
+
+    <form wicket:id="fileform">
+
+
+        <textarea wicket:id="srcbox" class="srcbox form-input" 
+        placeholder='Your Java Code'>
+		</textarea>
+
+        <br/>
+
+		<label> Command line Arguments</label>
+       
+        <input wicket:id="argsbox" type="text" placeholder="comma separated args"
+		class="form-input" style="margin-bottom:20px;">
+
+
+
+        <input wicket:id="submitbtn" type="submit" value="Submit" class="btn"/>
+
+    </form>
+
+    <div>
+
+        <div wicket:id="unsupportedErrCon" class="errResult">
+            <div style="color:red;">
+            Currently following is not supported
+            </div>
+
+          <div wicket:id="err">
+            <label wicket:id="errmsg"></label>
+          </div>
+
+        </div>
+
+        <div wicket:id="compileErr" class="errResult">
+            Fix Compile Errors !
+		    <div wicket:id="compilerOutput">
+
+            </div>
+        </div>
+
+
+
+
+        <div wicket:id="output" class="result"> </div>
+
+
+    </div>
+</div>
+
+<footer>
+<p>aplombee©2019 <br>
+Created by vineetsemwal82@gmail.com</p>        
+</footer>
+</body>
+</html>
