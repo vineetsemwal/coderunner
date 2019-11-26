@@ -13,4 +13,7 @@
 1) Currently Package is not supported 
 2) Following Libraries are also not supported    
 a)java .io   
-b)java .net
+b)java .net   
+c)java.awt   
+d)java.applet   
+
