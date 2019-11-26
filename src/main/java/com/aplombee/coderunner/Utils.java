@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+
 public class Utils implements Serializable {
     private static final Logger Log = LoggerFactory.getLogger("Utils");
 
@@ -24,6 +25,8 @@ public class Utils implements Serializable {
         unsupportedLibraries.add("java.io");
         unsupportedLibraries.add("java.net");
         unsupportedLibraries.add("java.security");
+        unsupportedLibraries.add("java.awt");
+        unsupportedLibraries.add("java.applet");
     }
 
     /**
