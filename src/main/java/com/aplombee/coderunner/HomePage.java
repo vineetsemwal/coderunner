@@ -35,7 +35,7 @@ public class HomePage extends WebPage {
     private String outputText;
     private MultiLineLabel outputField;
 
-    private WebMarkupContainer compileErrMarker;
+    private WebMarkupContainer compileErrComponent;
     private String compileErr;
     private WebMarkupContainer unsupportedErrContainer;
     private Utils utils1 = new Utils();
@@ -49,44 +49,24 @@ public class HomePage extends WebPage {
 
     public HomePage(final PageParameters parameters) {
         super(parameters);
-        add(compileErrMarker = new WebMarkupContainer("compileErr") {
+        add(compileErrComponent = new CompilerErrComponent("compileErr", new LoadableDetachableModel<String>() {
             @Override
-            protected void onInitialize() {
-                super.onInitialize();
-                add(new MultiLineLabel("compilerOutput", new LoadableDetachableModel<String>() {
-                    @Override
-                    protected String load() {
-                        return compileErr;
-                    }
-                }));
-                setOutputMarkupPlaceholderTag(true);
+            protected String load() {
+                return compileErr;
             }
-
-            @Override
-            protected void onConfigure() {
-                super.onConfigure();
-                setVisible(!Strings.isEmpty(compileErr));
-            }
-        });
+        }));
 
         add(new FileForm("fileform"));
 
-        add(outputField = new MultiLineLabel("output",
+        add(outputField = new RunOutputComponent("output",
                 new LoadableDetachableModel<String>() {
                     @Override
                     protected String load() {
                         return outputText;
                     }
-                }) {
-            @Override
-            protected void onConfigure() {
-                super.onConfigure();
-                setVisible(programRun);
-            }
-        });
-        outputField.setOutputMarkupPlaceholderTag(true);
+                }) );
 
-        unsupportedErrContainer = new UnsupportedErrCon("unsupportedErrCon", new LoadableDetachableModel<Set<String>>() {
+        unsupportedErrContainer = new UnsupportedErrComponent("unsupportedErrCon", new LoadableDetachableModel<Set<String>>() {
             @Override
             protected Set<String> load() {
                 return unsupported;
@@ -95,10 +75,42 @@ public class HomePage extends WebPage {
         add(unsupportedErrContainer);
     }
 
-    private class UnsupportedErrCon extends WebMarkupContainer {
+    private class CompilerErrComponent extends WebMarkupContainer{
+        public CompilerErrComponent(String id, IModel<String>model){
+            super(id,model);
+            setOutputMarkupPlaceholderTag(true);
+        }
+
+        @Override
+        protected void onInitialize() {
+            super.onInitialize();
+            add(new MultiLineLabel("compilerOutput", getDefaultModel()));
+        }
+
+        @Override
+        protected void onConfigure() {
+            super.onConfigure();
+            setVisible(!Strings.isEmpty(compileErr));
+        }
+
+    }
+
+    private class RunOutputComponent extends MultiLineLabel {
+        public RunOutputComponent(String id,IModel<String>model){
+            super(id,model);
+            setOutputMarkupPlaceholderTag(true);
+        }
+        @Override
+        protected void onConfigure() {
+            super.onConfigure();
+            setVisible(programRun);
+        }
+    }
+
+    private class UnsupportedErrComponent extends WebMarkupContainer {
         private DataView<String> errsView;
 
-        public UnsupportedErrCon(final String id, final IModel<Set<String>> model) {
+        public UnsupportedErrComponent(final String id, final IModel<Set<String>> model) {
             super(id, model);
             setOutputMarkupPlaceholderTag(true);
 
@@ -178,7 +190,7 @@ public class HomePage extends WebPage {
                         programRun = false;
                         target.add(outputField);
                         target.add(unsupportedErrContainer);
-                        target.add(compileErrMarker);
+                        target.add(compileErrComponent);
 
                         String srcDirPath = (String) FileForm.this.getSession().getAttribute(WicketApplication.SRC_DIR_PATH_KEY);
                         if (Strings.isEmpty(srcDirPath)) {
