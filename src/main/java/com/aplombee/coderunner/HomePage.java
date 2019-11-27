@@ -164,6 +164,7 @@ public class HomePage extends WebPage {
             });
             add(srcArea);
             srcArea.setOutputMarkupPlaceholderTag(true);
+            srcArea.setRequired(true);
 
             argsBox = new TextField<>("argsbox", new LoadableDetachableModel<String>() {
                 @Override
